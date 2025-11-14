@@ -8,6 +8,6 @@ public class DipendentePartTime extends Dipendente {
 
     @Override
     public double calculateSalary() {
-        return this.getStipendioBase() * oreLavorate;
+        return getStipendioBase() * oreLavorate;
     }
 }
