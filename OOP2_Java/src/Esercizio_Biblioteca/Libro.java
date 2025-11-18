@@ -38,8 +38,9 @@ public class Libro {
     public String getDettagli() {
         return "Titolo Libro: " + this.titolo + " - Autore: " + this.autore + " - ISBN: " + this.ISBN + " - Disponibilità: " + this.disponibile;
     };
+
     public void prestareLibro() {
-        if(disponibile) {
+        if(isDisponibile()) {
             disponibile = false;
         } else {
             System.out.println("Il libro " + titolo + " non è disponibile");
@@ -47,7 +48,7 @@ public class Libro {
     };
 
     public void restituireLibro() {
-        if(!disponibile) {
+        if(!isDisponibile()) {
             disponibile = true;
         } else {
             System.out.println("Errore: il libro '" + titolo + "' non era in prestito");

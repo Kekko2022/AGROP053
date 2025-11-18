@@ -1,16 +1,17 @@
 package Esercizio_Biblioteca;
 
 public class Utente implements GestionePrestiti {
+    private static int count = 0;
     private String nome;
     private String cognome;
     private String IDUtente;
     private Libro[] listaPrestiti;
     private int totalePrestitiUtente = 0;
 
-    public Utente(String nome, String cognome, String IDUtente) {
+    public Utente(String nome, String cognome) {
         this.nome = nome;
         this.cognome = cognome;
-        this.IDUtente = IDUtente;
+        this.IDUtente = "U" + (++count < 10 ? "0" + count : count);
         this.listaPrestiti = new Libro[3];
     }
 
@@ -31,7 +32,7 @@ public class Utente implements GestionePrestiti {
             if (listaPrestiti[i] == null) {
                 listaPrestiti[i] = libro;
                 libro.prestareLibro();
-                totalePrestitiUtente++; // incremento corretto qui
+                totalePrestitiUtente++;
                 System.out.println("Libro '" + libro.getDettagli() + "' preso in prestito.");
                 return;
             }
