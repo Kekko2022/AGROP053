@@ -27,7 +27,7 @@ public class Teatro {
             throw new postoGiaOccupatoException("Posto " + numeroPosto + " occupato");
         }
         this.posti[numeroPosto - 1] = persona;
-        System.out.println("Prenotazione posto: " + numeroPosto + " effettuata correttamente");
+        System.out.println("Prenotazione posto: " + numeroPosto + " effettuata correttamente da " + persona.getNome() + " " + persona.getCognome());
     }
 
     public boolean postiDIsponibili() {
