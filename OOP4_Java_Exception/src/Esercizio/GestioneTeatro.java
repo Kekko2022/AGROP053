@@ -13,8 +13,8 @@ public class GestioneTeatro {
 
         } catch (postoNonValidoException | postoGiaOccupatoException | postiTerminatiException  e) {
             System.out.println(e.getMessage());
+            stampaPostiDisponibili();
         }
-        stampaPostiDisponibili();
     }
 
     public static void stampaPostiDisponibili() {
