@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 public class MainProdotti {
     public static void main(String[] args) {
         List<Prodotti> listaProdotti = new ArrayList<Prodotti>();
-        listaProdotti.add(new Prodotti("1", "TV", "Elettronica", 1400.00, 20));
-        listaProdotti.add(new Prodotti("2", "Laptop", "Elettronica", 999.99, 10));
-        listaProdotti.add(new Prodotti("3", "Frullatore", "Cucina", 9.90, 50));
-        listaProdotti.add(new Prodotti("4", "Microonde", "Cucina", 39.90, 50));
-        listaProdotti.add(new Prodotti("4", "Frigorifero", "Cucina", 1200.99, 50));
-        listaProdotti.add(new Prodotti("5", "Monitor", "Elettronica", 199.99, 15));
-        listaProdotti.add(new Prodotti("6", "Tenda da Campeggio", "Campeggio", 43.99, 15));
+        listaProdotti.add(new Prodotti(1, "TV", "Elettronica", 1400.00, 20));
+        listaProdotti.add(new Prodotti(2, "Laptop", "Elettronica", 999.99, 10));
+        listaProdotti.add(new Prodotti(3, "Frullatore", "Cucina", 9.90, 50));
+        listaProdotti.add(new Prodotti(4, "Microonde", "Cucina", 39.90, 50));
+        listaProdotti.add(new Prodotti(5, "Frigorifero", "Cucina", 1200.99, 50));
+        listaProdotti.add(new Prodotti(6, "Monitor", "Elettronica", 199.99, 15));
+        listaProdotti.add(new Prodotti(7, "Tenda da Campeggio", "Campeggio", 43.99, 15));
 
         //STAMPA DI TUTTI I PRODOTTI
         System.out.println("***STAMPA DI TUTTI I PRODOTTI***");

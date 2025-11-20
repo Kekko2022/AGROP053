@@ -1,13 +1,13 @@
 package EsercizioStream;
 
 public class Prodotti {
-    private String id;
+    private int id;
     private String nome;
     private String categoria;
     private double prezzo;
     private int quantitaDisponibile;
 
-    public Prodotti(String id, String nome, String categoria, double prezzo, int quantitaDisponibile) {
+    public Prodotti(int id, String nome, String categoria, double prezzo, int quantitaDisponibile) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
@@ -15,7 +15,7 @@ public class Prodotti {
         this.quantitaDisponibile = quantitaDisponibile;
     }
 
-    public String getId() {return id;}
+    public int getId() {return id;}
     public String getNome() {return nome;}
     public String getCategoria() {return categoria;}
     public double getPrezzo() {return prezzo;}
