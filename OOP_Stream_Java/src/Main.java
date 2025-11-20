@@ -61,12 +61,24 @@ public class Main {
         //myStream = myStream.filter(str -> str.length() > 3);
         //myStream = myStream.sorted();
         //myStream.forEach(str -> System.out.println(str));
-        myStream.distinct()
+//        myStream.distinct()
+//                .filter(str -> str.length() > 3)
+//                .map(str -> str.toLowerCase() + "!!!")
+//                .sorted()
+//                .limit(2)
+//                .forEach(str -> System.out.println(str));
+
+        List<String> listaModificata = myStream.distinct()
                 .filter(str -> str.length() > 3)
+                .map(str -> str.toLowerCase() + "!!!")
                 .sorted()
-                .forEach(str -> System.out.println(str));
+                .limit(2)
+                .toList();
+
+        listaModificata.forEach(e -> System.out.println(e));
 
         testLambdaFunction();
+
     }
 
     public static void testLambdaFunction(){
