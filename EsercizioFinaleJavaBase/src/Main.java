@@ -2,14 +2,14 @@ import Eccezioni.ElementoNonTrovatoException;
 import com.github.javafaker.Faker;
 
 import java.util.Locale;
-import java.util.Random;
+//import java.util.Random;
 
 public class Main {
 
     private static Faker fk = new Faker(new Locale("it-IT"));
     private static Catalogo catalogo = new Catalogo();
 
-    private static Random random = new Random();
+    //private static Random random = new Random();
 
     public static void main(String[] args) {
         aggiuntaDinamica();
@@ -79,7 +79,6 @@ public class Main {
             System.out.println("ERRORE ALBUM: ");
             System.out.println(e.getMessage());
         }
-
         System.out.println("=== CATALOGO COMPLETO ===");
         catalogo.stampaDettagli();
     }
@@ -88,7 +87,7 @@ public class Main {
         // Ricerca
         try {
             System.out.println("\n=== RISULTATI RICERCA ===");
-            catalogo.cerca("rock").forEach(System.out::println);
+            catalogo.cerca("the").forEach(System.out::println);
         } catch (ElementoNonTrovatoException e) {
             System.out.println(e.getMessage());
         }
@@ -133,6 +132,5 @@ public class Main {
         System.out.println("Totale numero tracce di tutti gli Album: " + catalogo.sommaTracceAlbum());
         System.out.println("Media durata di tutti i film: " + catalogo.mediaMinutiFilm() + " minuti");
         System.out.println("Esistono film usciti negli anni 2000: " + catalogo.film2000());
-
     }
 }
