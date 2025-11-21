@@ -16,7 +16,7 @@ public class MainUser {
         userList.get(2).getHobby().add("Calcio");
         userList.get(3).getHobby().add("Golf");
         userList.get(3).getHobby().add("Calcio");
-        userList.get(4).getHobby().add("Tennis");
+        userList.get(4).getHobby().add("Calcio");
 
 //        List<User> userListFiltrata = new ArrayList<User>();
 //        for(User u:userList) {
@@ -40,6 +40,20 @@ public class MainUser {
                 .flatMap(u -> u.getHobby().stream())
                 .distinct()
                 .forEach(System.out::println);
+
+        // Matching
+        boolean allCalcio = userList.stream()
+                .allMatch(h -> h.getHobby().contains("Tennis"));
+        System.out.println("Tutti gli utenti amano il calcio: " + allCalcio);
+
+        boolean anyCalcio = userList.stream()
+                .anyMatch(h -> h.getHobby().contains("Calcio"));
+        System.out.println("Alcuni utenti amano il calcio: " + anyCalcio);
+
+        boolean noneScii = userList.stream()
+                .noneMatch(h -> h.getHobby().contains("Scii"));
+        System.out.println("Nessun utente ama lo scii: " + noneScii);
+
 
     }
 }

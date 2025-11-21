@@ -6,9 +6,10 @@ public class Prodotti {
     private String categoria;
     private double prezzo;
     private int quantitaDisponibile;
+    private static int count = 1;
 
-    public Prodotti(int id, String nome, String categoria, double prezzo, int quantitaDisponibile) {
-        this.id = id;
+    public Prodotti(String nome, String categoria, double prezzo, int quantitaDisponibile) {
+        this.id = count++;
         this.nome = nome;
         this.categoria = categoria;
         this.prezzo = prezzo;
