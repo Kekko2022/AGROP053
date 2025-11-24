@@ -30,7 +30,8 @@ public class Film extends MediaItem{
 
     @Override
     public boolean matches(String query) {
-        return super.matches(query) || regista.toLowerCase().contains(query.toLowerCase());
+        String q = query.toLowerCase();
+        return super.matches(query) || regista.toLowerCase().contains(q) || classificazione.toLowerCase().contains(q);
     }
 
     @Override
