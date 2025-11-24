@@ -25,6 +25,27 @@ public class Catalogo {
         elem.forEach(e -> System.out.println(e.getInfoDettagliata()));
     }
 
+    public List<Film> getFilm() {
+        return elem.stream()
+                .filter(i -> i instanceof Film)
+                .map(i -> (Film) i)
+                .toList();
+    }
+
+    public List<Libro> getLibri() {
+        return elem.stream()
+                .filter(i -> i instanceof Libro)
+                .map(i -> (Libro) i)
+                .toList();
+    }
+
+    public List<AlbumMusicale> getAlbumMusicali() {
+        return elem.stream()
+                .filter(i -> i instanceof AlbumMusicale)
+                .map(i -> (AlbumMusicale) i)
+                .toList();
+    }
+
     public List<MediaItem> ordinaPerTitolo() {
         return elem.stream()
                     .sorted(Comparator.comparing(MediaItem::getTitolo))
@@ -42,6 +63,14 @@ public class Catalogo {
                 .collect(Collectors.groupingBy(MediaItem::getAutore));
     }
 
+    public Map<String, Long> contaAutore() {
+        return elem.stream()
+                .collect(Collectors.groupingBy(
+                        MediaItem::getAutore,
+                        Collectors.counting()
+                ));
+    }
+
     public Map<String, List<Film>> raggruppaCatFilm() {
         return elem.stream()
                 .filter(e -> e instanceof Film)
@@ -54,6 +83,15 @@ public class Catalogo {
                     .mapToInt(MediaItem::getAnno)
                     .average()
                     .orElse(0);
+    }
+
+    public double mediaAnnoPerTipo(Class<? extends MediaItem> tipo) {
+        return elem.stream()
+                .filter(item -> tipo.isInstance(item))
+                .map(tipo::cast)
+                .mapToInt(MediaItem::getAnno)
+                .average()
+                .orElse(0);
     }
 
     public Map<String, Long> sommaElementiPerTipo()  {

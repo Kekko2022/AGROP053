@@ -8,6 +8,7 @@ public class Main {
 
     private static Faker fk = new Faker(new Locale("it-IT"));
     private static Catalogo catalogo = new Catalogo();
+    private static String[] generi = {"Action", "Comedy", "Drama", "Horror", "Fantasy", "Thriller", "Romance"};
 
     //private static Random random = new Random();
 
@@ -17,6 +18,7 @@ public class Main {
         ordinamentoTitolo();
         ordinamentoAnno();
         raggruppamentoAutore();
+        contatoreAutore();
         raggruppamentoCategoriaFilm();
         statistiche();
     }
@@ -24,7 +26,7 @@ public class Main {
     public static void aggiuntaDinamica() throws IllegalArgumentException{
         try {
             //int randLibri = random.nextInt(1, 11);
-            int randLibri = fk.number().numberBetween(1, 11);
+            int randLibri = fk.number().numberBetween(1, 3);
             for(int i = 0; i < randLibri; i++) {
                 //AGGIUNTA DI LIBRI
                 catalogo.aggiungi(new Libro(
@@ -42,10 +44,9 @@ public class Main {
 
         //int randFilm = random.nextInt(1, 11);
         try {
-            int randFilm = fk.number().numberBetween(1, 11);
+            int randFilm = fk.number().numberBetween(1, 3);
             for(int j = 0; j < randFilm; j++) {
                 //AGGIUNTA CON OPTION DI UN ARRAY DI GENERI, SUPPORTATO CON OPTION DALLA LIBRERIA FAKER
-                String[] generi = {"Action", "Comedy", "Drama", "Horror", "Fantasy", "Thriller", "Romance"};
                 String genre = fk.options().option(generi);
                 //AGGIUNTA DI FILM
                 catalogo.aggiungi(new Film(
@@ -64,7 +65,7 @@ public class Main {
 
         //int randAlbum = random.nextInt(1, 11);
         try {
-            int randAlbum = fk.number().numberBetween(1, 11);
+            int randAlbum = fk.number().numberBetween(1, 3);
             for(int k = 0; k < randAlbum; k++) {
                 //AGGIUNTA DI ALBUM MUSICALI
                 catalogo.aggiungi(new AlbumMusicale(
@@ -83,7 +84,8 @@ public class Main {
         catalogo.stampaDettagli();
     }
 
-    public static void ricerca() {
+
+    private static void ricerca() {
         // Ricerca
         try {
             System.out.println("\n=== RISULTATI RICERCA ===");
@@ -93,19 +95,19 @@ public class Main {
         }
     }
 
-    public static void ordinamentoTitolo() {
+    private static void ordinamentoTitolo() {
         // Ordinamento titolo
         System.out.println("\n=== ORDINATI PER TITOLO ===");
         catalogo.ordinaPerTitolo().forEach(System.out::println);
     }
 
-    public static void ordinamentoAnno() {
+    private static void ordinamentoAnno() {
         // Ordinamento anno
         System.out.println("\n=== ORDINATI PER ANNO ===");
         catalogo.ordinaPerAnno().forEach(System.out::println);
     }
 
-    public static void raggruppamentoAutore() {
+    private static void raggruppamentoAutore() {
         // Raggruppamento
         System.out.println("\n=== RAGGRUPPATI PER AUTORE ===");
         catalogo.raggruppaPerAutore().forEach((autore, items) -> {
@@ -114,7 +116,14 @@ public class Main {
         });
     }
 
-    public static void raggruppamentoCategoriaFilm() {
+    private static void contatoreAutore() {
+        System.out.println("\n=== CONTEGGIO PER AUTORE ===");
+        catalogo.contaAutore().forEach((autore, conteggio) -> {
+            System.out.println("Autore: " + autore + " | Numero opere: " + conteggio);
+        });
+    }
+
+    private static void raggruppamentoCategoriaFilm() {
         // Raggruppamento
         System.out.println("\n=== FILM RAGGRUPPATI PER CATEGORIA ===");
         catalogo.raggruppaCatFilm().forEach((categoria, items) -> {
@@ -123,10 +132,13 @@ public class Main {
         });
     }
 
-    public static void statistiche() {
+    private static void statistiche() {
         // Statistiche
         System.out.println("\n=== STATISTICHE ===");
         System.out.println("\nAnno medio pubblicazioni: " + catalogo.mediaAnno());
+        System.out.println("Anno medio pubblicazione per Film: " + catalogo.mediaAnnoPerTipo(Film.class));
+        System.out.println("Anno medio pubblicazione per Libri: " + catalogo.mediaAnnoPerTipo(Libro.class));
+        System.out.println("Anno medio pubblicazione per AlbumMusicale: " + catalogo.mediaAnnoPerTipo(AlbumMusicale.class));
         System.out.println("Somma elementi per tipo: " + catalogo.sommaElementiPerTipo());
         System.out.println("Totale pagine di tutti i libri: " + catalogo.sommaPagineLibri());
         System.out.println("Totale numero tracce di tutti gli Album: " + catalogo.sommaTracceAlbum());
