@@ -17,7 +17,7 @@ public class Prodotto {
     @Column(name = "descrizione", nullable = false, length = 45)
     private String descrizione;
 
-    @Column(name = "prezzo", nullable = false, length = 45)
+    @Column(name = "prezzo", nullable = false, length = 45, columnDefinition = "DECIMAL (10, 2)")
     private Double prezzo;
 
     @Column(name = "quantita_disponibile", nullable = false, length = 45)

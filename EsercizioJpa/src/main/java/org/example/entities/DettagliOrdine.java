@@ -12,10 +12,12 @@ public class DettagliOrdine {
     @Column(name = "id_dettagli_ordine", nullable = false)
     private Long id_dettagli_ordine;
 
-    // TODO one to one
+    @OneToOne
+    @JoinColumn(name = "id_ordine", nullable = false)
     private Ordine ordine;
 
-    // TODO one to many
+    @ManyToOne
+    @JoinColumn(name = "id_prodotto", nullable = true)
     private Prodotto prodotto;
 
     @Column(name="quantita", nullable = false)
@@ -25,7 +27,7 @@ public class DettagliOrdine {
     private  double prezzo_unitario;
 
     public DettagliOrdine() {}
-    public DettagliOrdine(Ordine ordine, List<Prodotto> prodotto, int quantita, double prezzo_unitario) {
+    public DettagliOrdine(Ordine ordine, Prodotto prodotto, int quantita, double prezzo_unitario) {
         this.ordine = ordine;
         this.prodotto = prodotto;
         this.quantita = quantita;
@@ -48,11 +50,11 @@ public class DettagliOrdine {
         this.ordine = ordine;
     }
 
-    public List<Prodotto> getProdotto() {
+    public Prodotto getProdotto() {
         return prodotto;
     }
 
-    public void setProdotto(List<Prodotto> prodotto) {
+    public void setProdotto(Prodotto prodotto) {
         this.prodotto = prodotto;
     }
 

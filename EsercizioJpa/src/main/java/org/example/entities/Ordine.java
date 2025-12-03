@@ -14,16 +14,21 @@ public class Ordine {
     @Column(name = "id_ordine", nullable = false)
     private Long id_ordine;
 
-    @ManyToMany(mappedBy = "ordini")
-    private List<Cliente> listaCliente;
-
-    @Column(name="data_ordine", nullable = false)
+    @Column(name="data_ordine", nullable = true, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp data_ordine;
 
+    @OneToOne(mappedBy = "ordine", cascade = CascadeType.ALL)
+    private DettagliOrdine dettagliOrdine;
+
+    // todo MANY TO ONE
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
+
     public Ordine() {}
-    public Ordine(Timestamp data_ordine) {
-        this.data_ordine = data_ordine;
-        this.listaCliente = new ArrayList<>();
+    public Ordine(Cliente cliente) {
+        this.cliente = cliente;
+        this.data_ordine = new Timestamp(System.currentTimeMillis());
     }
 
     public Long getId_ordine() {
@@ -34,30 +39,25 @@ public class Ordine {
         this.id_ordine = id_ordine;
     }
 
-    public List<Cliente> getListaCliente() {
-        return listaCliente;
-    }
-
-    public void setListaCliente(List<Cliente> listaCliente) {
-        this.listaCliente = listaCliente;
-    }
-
     public Timestamp getData_ordine() {
         return data_ordine;
     }
 
-    public void setData_ordine(Timestamp data_ordine) {
-        this.data_ordine = data_ordine;
+    public DettagliOrdine getDettagliOrdine() {
+        return dettagliOrdine;
     }
 
-
+    public void setDettagliOrdine(DettagliOrdine dettagliOrdine) {
+        this.dettagliOrdine = dettagliOrdine;
+    }
 
     @Override
     public String toString() {
         return "Ordine{" +
                 "id_ordine=" + id_ordine +
-                ", listaCliente=" + listaCliente +
                 ", data_ordine=" + data_ordine +
+                ", dettagliOrdine=" + dettagliOrdine.getId_dettagli_ordine() +
+                ", cliente=" + cliente +
                 '}';
     }
 }

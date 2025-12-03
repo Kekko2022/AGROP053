@@ -26,21 +26,12 @@ public class Cliente {
     @Column(name = "telefono", nullable = true, length = 45)
     private String telefono;
 
-    @ManyToMany
-    @JoinTable(
-            name = "clienti_ordini",
-            joinColumns = @JoinColumn(name = "id_cliente"),
-            inverseJoinColumns = @JoinColumn(name = "id_ordine")
-    )
-    private List<Ordine> ordini;
-
     public Cliente() {}
     public Cliente(String nome, String cognome, String email, String telefono) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.telefono = telefono;
-        this.ordini = new ArrayList<>();
     }
 
     public Long getId_cliente() {
@@ -81,14 +72,6 @@ public class Cliente {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public List<Ordine> getOrdini() {
-        return ordini;
-    }
-
-    public void setOrdini(List<Ordine> ordini) {
-        this.ordini = ordini;
     }
 
     @Override
